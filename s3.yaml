@@ -18,6 +18,23 @@ Resources:
                   - '/'
                   - !Ref 'AWS::StackId'
 
+Resources:
+  TestRole:
+    Type: 'AWS::IAM::Role'
+    Properties:
+      RoleName: test-role
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service:
+                - lambda.amazonaws.com  # Example service that can assume the role
+            Action:
+              - 'sts:AssumeRole'
+      ManagedPolicyArns:
+        - 'arn:aws:iam::aws:policy/Billing'
+
 Outputs:
   RandomS3BucketName:
     Value: !Ref RandomS3Bucket
