@@ -18,7 +18,6 @@ Resources:
                   - '/'
                   - !Ref 'AWS::StackId'
 
-Resources:
   TestRole:
     Type: 'AWS::IAM::Role'
     Properties:
