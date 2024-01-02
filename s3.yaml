@@ -38,8 +38,7 @@ Resources:
             Action: 'sts:AssumeRole'
             Condition:
               StringEquals:
-                'sts:ExternalId':
-                  Ref: ExternalID
+                'sts:ExternalId': 16160bc0fbdbbca17d39cbeb5bd83f
 
 Outputs:
   RandomS3BucketName:
