@@ -18,21 +18,27 @@ Resources:
                   - '/'
                   - !Ref 'AWS::StackId'
 
-  TestRole:
-    Type: 'AWS::IAM::Role'
+Type: 'AWS::IAM::Role'
     Properties:
-      RoleName: test-role
+      RoleName: CloudHealth-Role
       AssumeRolePolicyDocument:
         Version: '2012-10-17'
         Statement:
           - Effect: Allow
             Principal:
-              Service:
-                - lambda.amazonaws.com  # Example service that can assume the role
-            Action:
-              - 'sts:AssumeRole'
-      ManagedPolicyArns:
-        - 'arn:aws:iam::aws:policy/Billing'
+              AWS: 'arn:aws:iam::454464851268:root'
+            Action: 'sts:AssumeRole'
+            Condition:
+              StringEquals:
+                'sts:ExternalId': 16160bc0fbdbbca17d39cbeb5bd83f
+          - Effect: Allow
+            Principal:
+              AWS: 'arn:aws:iam::454464851268:root'
+            Action: 'sts:AssumeRole'
+            Condition:
+              StringEquals:
+                'sts:ExternalId':
+                  Ref: ExternalID
 
 Outputs:
   RandomS3BucketName:
