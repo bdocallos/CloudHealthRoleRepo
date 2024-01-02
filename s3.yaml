@@ -17,28 +17,28 @@ Resources:
                 - !Split
                   - '/'
                   - !Ref 'AWS::StackId'
-
-Type: 'AWS::IAM::Role'
-    Properties:
-      RoleName: CloudHealth-Role
-      AssumeRolePolicyDocument:
-        Version: '2012-10-17'
-        Statement:
-          - Effect: Allow
-            Principal:
-              AWS: 'arn:aws:iam::454464851268:root'
-            Action: 'sts:AssumeRole'
-            Condition:
-              StringEquals:
-                'sts:ExternalId': 16160bc0fbdbbca17d39cbeb5bd83f
-          - Effect: Allow
-            Principal:
-              AWS: 'arn:aws:iam::454464851268:root'
-            Action: 'sts:AssumeRole'
-            Condition:
-              StringEquals:
-                'sts:ExternalId':
-                  Ref: ExternalID
+  CloudHealthReadOnlyRole:
+    Type: 'AWS::IAM::Role'
+      Properties:
+        RoleName: CloudHealth-Role
+        AssumeRolePolicyDocument:
+          Version: '2012-10-17'
+          Statement:
+            - Effect: Allow
+              Principal:
+                AWS: 'arn:aws:iam::454464851268:root'
+              Action: 'sts:AssumeRole'
+              Condition:
+                StringEquals:
+                  'sts:ExternalId': 16160bc0fbdbbca17d39cbeb5bd83f
+            - Effect: Allow
+              Principal:
+                AWS: 'arn:aws:iam::454464851268:root'
+              Action: 'sts:AssumeRole'
+              Condition:
+                StringEquals:
+                  'sts:ExternalId':
+                    Ref: ExternalID
 
 Outputs:
   RandomS3BucketName:
