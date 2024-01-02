@@ -1,5 +1,24 @@
 AWSTemplateFormatVersion: '2010-09-09'
+Description: 'Creates a randomly named S3 bucket and outputs its name'
 
 Resources:
-  MyS3Bucket:
+  RandomS3Bucket:
     Type: 'AWS::S3::Bucket'
+    Properties:
+      BucketName: !Join 
+        - '-'
+        - - 'random-bucket'
+          - !Select
+            - 2
+            - !Split
+              - '-'
+              - !Select
+                - 2
+                - !Split
+                  - '/'
+                  - !Ref 'AWS::StackId'
+
+Outputs:
+  RandomS3BucketName:
+    Value: !Ref RandomS3Bucket
+    Description: 'The name of the randomly created S3 bucket'
