@@ -1,0 +1,4 @@
+template-file-path: consolidated-account-read-only.yaml
+parameters: {}
+tags:
+  Environment: Prod
